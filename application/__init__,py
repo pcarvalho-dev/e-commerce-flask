@@ -6,4 +6,4 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///my_marketplace.db'
 db = SQLAlchemy(app)
 
-from market.admin import routes
+from #path import #route
