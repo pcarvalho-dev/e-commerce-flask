@@ -1,2 +1,4 @@
 flask==2.0.2
+Flask-SQLAlchemy==2.5.1
+Flask-WTF==0.15.1
 python-dotenv
