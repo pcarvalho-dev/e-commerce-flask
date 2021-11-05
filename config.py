@@ -22,3 +22,5 @@ class Config:
     SQLALCHEMY_BINDS = {
         'slave': SQLALCHEMY_DATABASE_URI
     }
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

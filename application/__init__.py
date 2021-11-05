@@ -1,7 +1,15 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from extensions import cors, jwt, db, ma
 
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///my_marketplace.db'
-db = SQLAlchemy(app)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object("config.Config")
+
+    # Extensions
+    cors.init_app(app, resources={r"/*": {"origins": "*"}})
+    jwt.init_app(app)
+    db.init_app(app)
+    ma.init_app(app)
+
+    return app
