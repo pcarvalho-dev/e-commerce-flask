@@ -23,4 +23,5 @@ class Config:
         'slave': SQLALCHEMY_DATABASE_URI
     }
 
+    FLASK_REDIRECT = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
