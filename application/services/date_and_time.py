@@ -1,3 +1,8 @@
+import datetime
+
+import pytz
+
+
 def get_now(t=None):
     timezone = pytz.timezone("America/Sao_Paulo")
 
