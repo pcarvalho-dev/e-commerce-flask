@@ -17,7 +17,7 @@ class Config:
     DB_NAME = os.environ.get('DB_NAME', 'marketplace_db')
     DB_USER = os.environ.get('DB_USER', 'root')
     DB_PASS = os.environ.get('DB_PASS', 'root')
-    DB_HOST = os.environ.get('DB_HOST', 'mysql')
+    DB_HOST = os.environ.get('DB_HOST', 'database')
     SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}?charset=utf8mb4'
     SQLALCHEMY_BINDS = {
         'slave': SQLALCHEMY_DATABASE_URI

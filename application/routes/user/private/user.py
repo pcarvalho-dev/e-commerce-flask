@@ -2,7 +2,7 @@ from flask import request
 from flask_jwt_extended import jwt_required
 
 from application.models.user.user import User
-from application.routes.users.private import bp
+from application.routes.user.private import bp
 from application.schemas.user.user import UserSchema
 from application.services.endpoints import default_return
 
@@ -11,7 +11,7 @@ from application.services.endpoints import default_return
 def item_views():
     try:
         if request.method == 'GET':
-            return {"Ok"}
+            return "ok"
         if request.method == 'POST':
             request_body = request.get_json()
             item = User().create_item(request_body).save()

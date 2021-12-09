@@ -11,3 +11,4 @@ waitress==1.4.4
 marshmallow-sqlalchemy==0.26.1
 pytz==2021.3
 Passlib==1.7.1
+PyMySQL==1.0.2

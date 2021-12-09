@@ -1,6 +1,7 @@
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
 
-from extensions import db, BaseModel
+from application.models.base import BaseModel
+from extensions import db
 
 
 class User(db.Model, BaseModel):
@@ -14,9 +15,9 @@ class User(db.Model, BaseModel):
     status = db.Column(db.Boolean, default=1)
 
     # ForeignKeys
-    group_id = db.Column(db.Integer, db.ForeignKey("group.id"))
-
-    group = db.relationship('Group', backref='user', lazy=True, uselist=False)
+    # group_id = db.Column(db.Integer, db.ForeignKey("group.id"))
+    #
+    # group = db.relationship('Group', backref='user', lazy=True, uselist=False)
 
     def set_password(self, password):
         self.password = pbkdf2_sha256.hash(password)[20:]
@@ -30,6 +31,6 @@ class User(db.Model, BaseModel):
         self.set_password(dict_body["password"])
         self.document = dict_body.get("document", self.document)
         self.phone_number = dict_body.get("phone_number", self.phone_number)
-        self.group_id = dict_body.get("group_id", 1)
+        # self.group_id = dict_body.get("group_id", 1)
 
         return self

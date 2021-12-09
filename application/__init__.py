@@ -16,7 +16,7 @@ def create_app():
     db.init_app(app)
     ma.init_app(app)
 
-    from application.routes.users import private
+    from application.routes.user import private
     private.init_app(app)
 
     return app
