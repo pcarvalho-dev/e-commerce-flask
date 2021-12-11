@@ -29,6 +29,7 @@ class User(db.Model, BaseModel):
     def create_item(self, dict_body):
         self.name = dict_body.get("name", self.name)
         self.email = dict_body.get("email", self.email)
+        self.username = dict_body.get("username", self.username)
         self.set_password(dict_body["password"])
         self.document = dict_body.get("document", self.document)
         self.phone_number = dict_body.get("phone_number", self.phone_number)

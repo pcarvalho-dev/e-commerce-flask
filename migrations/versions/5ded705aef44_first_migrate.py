@@ -25,9 +25,11 @@ def upgrade():
     sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('name', sa.String(length=256), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
+    sa.Column('username', sa.String(length=256), nullable=False),
     sa.Column('password', sa.String(length=256), nullable=False),
     sa.Column('document', sa.String(length=256), nullable=True),
     sa.Column('phone_number', sa.String(length=256), nullable=True),
+    sa.Column('status', sa.Boolean(), nullable=True),
     sa.Column('status', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('id')
