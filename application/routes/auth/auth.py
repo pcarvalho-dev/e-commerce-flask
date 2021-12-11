@@ -8,6 +8,7 @@ from sqlalchemy import or_
 
 from application.models.user.user import User
 from application.routes.auth import bp
+from application.services.endpoints import default_return
 from application.services.exceptions import UnauthorizedError
 
 
@@ -25,11 +26,11 @@ def login():
                              User.deleted_at.is_(None),
                              User.status == 1).first()
     if not user:
-        return make_response(jsonify("User not found"), 200)
+        return default_return(200, "User not found", {})
 
     if user.check_password(password):
         access_token = create_access_token(identity=username)
-        return make_response(jsonify(access_token), 200)
+        return default_return(200, "OK", {"access_token": access_token})
 
 
 # Protect a route with jwt_required, which will kick out requests
