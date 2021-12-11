@@ -17,6 +17,9 @@ def create_app():
     ma.init_app(app)
     migrate.init_app(app, db)
 
+    from application.routes import auth
+    auth.init_app(app)
+
     from application.routes.user import private
     private.init_app(app)
 
