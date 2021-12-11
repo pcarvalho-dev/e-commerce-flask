@@ -23,4 +23,10 @@ class Config:
         'slave': SQLALCHEMY_DATABASE_URI
     }
 
+    # jwt
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY',
+                                    'ZWNvbW1lcmNlQHNlY3JldF9rZXk=')
+    JWT_ALGORITHM = "HS256"
+    JWT_EXPIRES = 3600
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(seconds=JWT_EXPIRES)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
