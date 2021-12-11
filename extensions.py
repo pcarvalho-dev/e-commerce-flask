@@ -5,6 +5,7 @@ from flask import current_app
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy, Model, get_state
 from sqlalchemy import orm
 from application.services.date_and_time import get_now
@@ -99,3 +100,4 @@ cors = CORS()
 db = RouteSQLAlchemy(model_class=CRUDMixin)
 jwt = JWTManager()
 ma = Marshmallow()
+migrate = Migrate()

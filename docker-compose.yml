@@ -9,6 +9,8 @@ services:
       - .:/flask-api
     depends_on:
       - database
+    environment:
+      FLASK_APP: main.py
     restart: always
   database:
     image: mysql:5.6
