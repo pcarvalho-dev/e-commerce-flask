@@ -24,4 +24,7 @@ def create_app():
     from application.routes.user import private
     private.init_app(app)
 
+    from application.routes.group import private
+    private.init_app(app)
+
     return app
