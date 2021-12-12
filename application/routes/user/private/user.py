@@ -8,6 +8,7 @@ from application.services.endpoints import default_return
 
 
 @bp.route("", methods=["GET", "POST"])
+@jwt_required()
 def item_views():
     try:
         if request.method == 'GET':
