@@ -1,9 +1,8 @@
 from flask import request
-from flask_jwt_extended import jwt_required
 
-from application.models.user.user import User
+from application.models.group.group import Group
 from application.routes.user.private import bp
-from application.schemas.user.user import UserSchema
+from application.schemas.group.group import GroupSchema
 from application.services.endpoints import default_return
 
 
@@ -14,8 +13,8 @@ def item_views():
             return "ok"
         if request.method == 'POST':
             request_body = request.get_json()
-            item = User().create_object(request_body).save()
-            item = UserSchema().dump(item)
+            item = Group().create_object(request_body).save()
+            item = GroupSchema().dump(item)
             return default_return(201, 1, item)
     except Exception as e:
         raise e

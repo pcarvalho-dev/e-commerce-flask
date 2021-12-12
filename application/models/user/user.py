@@ -26,7 +26,7 @@ class User(db.Model, BaseModel):
     def check_password(self, candidate):
         return pbkdf2_sha256.verify(candidate, f"$pbkdf2-sha256$29000{self.password}")
 
-    def create_item(self, dict_body):
+    def create_object(self, dict_body):
         self.name = dict_body.get("name", self.name)
         self.email = dict_body.get("email", self.email)
         self.username = dict_body.get("username", self.username)
