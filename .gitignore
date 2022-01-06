@@ -149,3 +149,7 @@ cython_debug/
 /.idea/my_marketplace.iml
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/vcs.xml
+/.idea/aws.xml
+/.idea/dataSources.xml
+/.idea/e-commerce.iml
+/.idea/git_toolbox_prj.xml
