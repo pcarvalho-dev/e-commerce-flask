@@ -2,12 +2,12 @@ from flask import request
 from flask_jwt_extended import jwt_required
 
 from application.models.group.group import Group
-from application.routes.user.private import bp
 from application.schemas.group.group import GroupSchema
 from application.services.endpoints import default_return
+from application.views.private.group import group_private_bp
 
 
-@bp.route("", methods=["GET", "POST"])
+@group_private_bp.route("", methods=["GET", "POST"])
 @jwt_required()
 def item_views():
     try:

@@ -7,12 +7,12 @@ from flask_jwt_extended import jwt_required
 from sqlalchemy import or_
 
 from application.models.user.user import User
-from application.routes.auth import bp
+from application.views.auth import bp
 from application.services.endpoints import default_return
 from application.services.exceptions import UnauthorizedError
 
 
-@bp.route("/login", methods=["POST"])
+@bp.route("/token", methods=["POST"])
 def login():
     basic = request.headers.get("Authorization")
     username = request.json.get("username", None)
@@ -20,7 +20,7 @@ def login():
 
     if username == "root" and password == "root":
         access_token = create_access_token(identity=username)
-        return default_return(200, "OK", {"access_token": access_token})
+        return {"access_token": access_token}
     else:
         # if not basic:
         #     raise UnauthorizedError('Basic token missing')
@@ -34,7 +34,7 @@ def login():
 
         if user.check_password(password):
             access_token = create_access_token(identity=username)
-            return default_return(200, "OK", {"access_token": access_token})
+            return {"access_token": access_token}
 
 
 # Protect a route with jwt_required, which will kick out requests
