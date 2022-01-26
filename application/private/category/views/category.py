@@ -1,10 +1,9 @@
+from application.private.category import category_private_bp
+from application.private.category.models.category import Category
+from application.private.category.schemas.category import CategorySchema
+from application.services.endpoints import default_return
 from flask import request
 from flask_jwt_extended import jwt_required
-
-from application.models.category.category import Category
-from application.schemas.category.category import CategorySchema
-from application.services.endpoints import default_return
-from application.views.private.category import category_private_bp
 
 
 @category_private_bp.route("", methods=["GET", "POST"])

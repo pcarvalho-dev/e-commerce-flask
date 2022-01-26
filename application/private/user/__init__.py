@@ -2,7 +2,7 @@ from flask import Blueprint
 
 user_private_bp = Blueprint("user_private_bp", __name__)
 
-from . import user
+from .views import user
 
 
 def init_app(app):

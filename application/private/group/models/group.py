@@ -1,4 +1,4 @@
-from application.models.base import BaseModel
+from application.common.base import BaseModel
 from extensions import db
 
 

@@ -2,7 +2,7 @@ from flask import Blueprint
 
 category_private_bp = Blueprint("category_private_bp", __name__)
 
-from . import category
+from .views import category
 
 
 def init_app(app):

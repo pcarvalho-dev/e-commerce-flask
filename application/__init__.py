@@ -19,14 +19,12 @@ def create_app():
     def index():
         return "ok", 200
 
-    from application.views import auth
-    auth.init_app(app)
+    # private
+    from application import private
+    private.init_app(app)
 
-    from application.views.private import user
-    user.init_app(app)
-    from application.views.private import group
-    group.init_app(app)
-    from application.views.private import category
-    category.init_app(app)
+    # public
+    from application import public
+    public.init_app(app)
 
     return app

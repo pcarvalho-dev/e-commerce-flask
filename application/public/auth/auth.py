@@ -1,18 +1,14 @@
-from flask import jsonify, make_response
-from flask import request
-
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
-from sqlalchemy import or_
-
-from application.models.user.user import User
-from application.views.auth import bp
+from application.private.user.models.user import User
+from application.public.auth import auth_bp
 from application.services.endpoints import default_return
 from application.services.exceptions import UnauthorizedError
+from flask import jsonify, make_response, request
+from flask_jwt_extended import (create_access_token, get_jwt_identity,
+                                jwt_required)
+from sqlalchemy import or_
 
 
-@bp.route("/token", methods=["POST"])
+@auth_bp.route("/token", methods=["POST"])
 def login():
     basic = request.headers.get("Authorization")
     username = request.json.get("username", None)
@@ -39,7 +35,7 @@ def login():
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
-@bp.route("/protected", methods=["GET"])
+@auth_bp.route("/protected", methods=["GET"])
 @jwt_required()
 def protected():
     # Access the identity of the current user with get_jwt_identity

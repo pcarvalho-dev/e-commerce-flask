@@ -1,10 +1,9 @@
+from application.private.user import user_private_bp
+from application.private.user.models.user import User
+from application.private.user.schemas.user import UserSchema
+from application.services.endpoints import default_return
 from flask import request
 from flask_jwt_extended import jwt_required
-
-from application.models.user.user import User
-from application.schemas.user.user import UserSchema
-from application.services.endpoints import default_return
-from application.views.private.user import user_private_bp
 
 
 @user_private_bp.route("", methods=["GET", "POST"])

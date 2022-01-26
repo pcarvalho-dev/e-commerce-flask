@@ -1,7 +1,6 @@
-from passlib.handlers.pbkdf2 import pbkdf2_sha256
-
-from application.models.base import BaseModel
+from application.common.base import BaseModel
 from extensions import db
+from passlib.handlers.pbkdf2 import pbkdf2_sha256
 
 
 class User(db.Model, BaseModel):
