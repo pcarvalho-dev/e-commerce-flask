@@ -14,7 +14,7 @@ class Config:
     API_VERSION = "v1"
 
     # app
-    SITE_HTTPS = os.environ.get("SITE_HTTPS") + os.environ.get("API_PORT")
+    SITE_HTTPS = os.environ.get("SITE_HTTPS") + ":" + os.environ.get("API_PORT")
     SECRET_KEY = os.environ.get('API_SECRET_KEY',
                                 'ZWNvbW1lcmNlQHNlY3JldF9rZXk=')
     JSON_SORT_KEYS = False

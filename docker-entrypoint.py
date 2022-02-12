@@ -26,7 +26,7 @@ os.system("flask db upgrade")
 
 if __name__ == "__main__":
     if os.getenv("DEBUG_INTEGRATION") == "vscode":
-        call(["python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "-m", "run", "--wait-for-client", "--multiprocess",
-              "-m", "flask", "run", "-h", "0.0.0.0", "-p", os.getenv("API_PORT")])
+        call(["python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "-m", "main", "--wait-for-client", "--multiprocess",
+              "-m", "flask", "main", "-h", "0.0.0.0", "-p", os.getenv("API_PORT")])
     else:
         call(["python", "main.py", os.getenv("API_PORT")])
