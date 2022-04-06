@@ -1,3 +1,4 @@
+from application.private.product.schemas.product import ProductSchema
 from application.private.user.models.user import User
 from application.public.auth import auth_bp
 from application.services.endpoints import default_return
@@ -29,9 +30,24 @@ def login():
             return default_return(200, "User not found", {})
 
         if user.check_password(password):
-            access_token = create_access_token(identity=username)
+            user_jwt = {}
+            user_jwt['id'] = user.id
+            user_jwt['username'] = user.username
+            user_jwt['email'] = user.email
+            access_token = create_access_token(identity=user_jwt)
             return {"access_token": access_token}
 
+
+@auth_bp.route("/register", methods=["POST"])
+def register():
+    try:
+        if request.method == 'POST':
+            request_body = request.get_json()
+            item = User().create_object(request_body).save()
+            item = ProductSchema().dump(item)
+            return default_return(201, 1, item)
+    except Exception as e:
+        raise e
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.

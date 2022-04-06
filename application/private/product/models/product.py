@@ -28,3 +28,11 @@ class Product(db.Model, BaseModel):
         self.category_id = dict_body.get("category_id", self.category_id)
 
         return self
+
+    def update_object(self, dict_body):
+        self.name = dict_body.get("name", self.name)
+        self.status = dict_body.get("status", self.status)
+        self.price = dict_body.get("price", self.price)
+        self.category_id = dict_body.get("category_id", self.category_id)
+
+        return self
