@@ -11,5 +11,6 @@ class ProductLike(db.Model, BaseModel):
     def create_object(self, dict_body):
         self.user_id = dict_body.get("user_id", self.user_id)
         self.product_id = dict_body.get("product_id", self.product_id)
+        self.deleted_at = dict_body.get("deleted_at", self.deleted_at)
 
         return self

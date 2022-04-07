@@ -74,7 +74,7 @@ def delete(id):
         raise e
 
 
-@product_private_bp.route("/<id>/like", methods=["POST", "PUT"])
+@product_private_bp.route("/<id>/like", methods=["POST"])
 @jwt_required()
 def like(id):
     try:
@@ -82,9 +82,28 @@ def like(id):
             user_jwt = get_jwt_identity()
             user = get_user(user_jwt['id'])
             ProductLike().create_object(
-                dict_body={"user_id": int(user.id), "product_id": int(id)}).save()
+                dict_body={"user_id": int(user.id), "product_id": int(id), "deleted_at": None}).save()
 
             return default_return(201, 1, {})
+
+    except Exception as e:
+        raise e
+
+
+@product_private_bp.route("/<id>/dislike", methods=["DELETE"])
+@jwt_required()
+def dislike(id):
+    try:
+        if request.method == 'DELETE':
+            user_jwt = get_jwt_identity()
+            user = get_user(user_jwt['id'])
+
+            item = ProductLike.query.filter(ProductLike.product_id == id).filter(
+                ProductLike.user_id == user.id).first()
+
+            item.delete()
+
+            return default_return(200, 4, {})
 
     except Exception as e:
         raise e
