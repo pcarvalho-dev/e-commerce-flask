@@ -1,4 +1,5 @@
 import json
+import os
 
 import requests
 
@@ -21,8 +22,8 @@ def upload_file3(image, aws_key, filename=0):
     }
     params = {
         "auth": {
-            "api_key": "cb65bbe68cd9b4b1f32f9a3f4fbfa10d",
-            "api_secret": "c46556c41826746e381090974aac27c93e2a6d01"
+            "api_key": Config.KRAKEN_API_KEY,
+            "api_secret": Config.KRAKEN_API_SECRET
         },
         "s3_store": {
             "key": Config.AWS_ACCESS_KEY_ID,
