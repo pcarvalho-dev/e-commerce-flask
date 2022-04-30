@@ -19,12 +19,7 @@ def create_app():
     def index():
         return "ok", 200
 
-    # private
-    from application import private
-    private.init_app(app)
-
-    # public
-    from application import public
-    public.init_app(app)
+    from application import routes
+    routes.register_routes(app)
 
     return app

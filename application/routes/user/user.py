@@ -1,12 +1,12 @@
-from application.private.group import group_private_bp
-from application.private.group.models.group import Group
-from application.private.group.schemas.group import GroupSchema
+from application.models.user import User
+from application.routes.user import user_bp
+from application.schemas.user import UserSchema
 from application.services.endpoints import default_return
 from flask import request
 from flask_jwt_extended import jwt_required
 
 
-@group_private_bp.route("", methods=["GET", "POST"])
+@user_bp.route("", methods=["GET", "POST"])
 @jwt_required()
 def item_views():
     try:
@@ -14,8 +14,8 @@ def item_views():
             return "ok"
         if request.method == 'POST':
             request_body = request.get_json()
-            item = Group().create_object(request_body).save()
-            item = GroupSchema().dump(item)
+            item = User().create_object(request_body).save()
+            item = UserSchema().dump(item)
             return default_return(201, 1, item)
     except Exception as e:
         raise e

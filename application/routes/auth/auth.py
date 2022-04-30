@@ -1,8 +1,7 @@
-from application.private.user.models.user import User
-from application.public.auth import auth_bp
+from application.models.user import User
+from application.routes.auth import auth_bp
 from application.services.endpoints import default_return
-from application.services.exceptions import UnauthorizedError
-from flask import jsonify, make_response, request
+from flask import jsonify, request
 from flask_jwt_extended import (create_access_token, get_jwt_identity,
                                 jwt_required)
 from sqlalchemy import or_
