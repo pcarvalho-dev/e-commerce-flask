@@ -1,7 +1,7 @@
 from application.models.category import Category
 from application.routes.category import category_bp
 from application.schemas.category import CategorySchema
-from application.services.endpoints import default_return
+from application.services.request.requests import default_return
 from flask import request
 from flask_jwt_extended import jwt_required
 

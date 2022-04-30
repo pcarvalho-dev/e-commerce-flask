@@ -1,22 +1,22 @@
 def code_message(message_or_code):
     if message_or_code == 1:
-        message = "Cadastrado com Sucesso"
+        message = "Registered successfully"
     elif message_or_code == 2:
-        message = "Consulta Realizada com Sucesso"
+        message = "Query made successfully"
     elif message_or_code == 3:
-        message = "Atualizado com Sucesso"
+        message = "Updated successfully"
     elif message_or_code == 4:
-        message = "Deletado com Sucesso"
+        message = "Deleted successfully"
     elif message_or_code == 5:
-        message = "Está faltando um campo"
+        message = "Missing field"
     elif message_or_code == 6:
-        message = "Não Encontrado"
+        message = "Not Found"
     elif message_or_code == 7:
-        message = "Item já Cadastrado"
+        message = "Already registered"
     elif message_or_code == 8:
-        message = "Item já Deletado"
+        message = "Already Deleted"
     elif message_or_code == 9:
-        message = "Fluxo de alteração de status não permitido. Os dados não foram atualizados"
+        message = "Status change not permitted. The data was not updated"
     else:
         message = message_or_code
 
@@ -28,8 +28,6 @@ def code_http(code):
         status = "OK"
     if code == 201:
         status = "Created"
-    if code == 204:
-        status = "No Content"
     if code == 206:
         status = "Partial Content"
     if code == 302:

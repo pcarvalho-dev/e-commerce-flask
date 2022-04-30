@@ -1,9 +1,10 @@
 from application.models.group import Group
 from application.routes.group import group_bp
 from application.schemas.group import GroupSchema
-from application.services.endpoints import default_return
 from flask import request
 from flask_jwt_extended import jwt_required
+
+from application.services.request.requests import default_return
 
 
 @group_bp.route("", methods=["GET", "POST"])

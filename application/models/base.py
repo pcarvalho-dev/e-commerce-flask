@@ -1,15 +1,14 @@
+from datetime import datetime
 from flask_sqlalchemy import Model
-from sqlalchemy import Integer, DateTime, Column
-
-from application import get_now
+from sqlalchemy import Column, Integer, DateTime
 
 
 class BaseModel(Model):
     __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
-    created_at = Column(DateTime, default=get_now)
-    updated_at = Column(DateTime, default=get_now, onupdate=get_now)
+    created_at = Column(DateTime, default=datetime.now())
+    updated_at = Column(DateTime, default=datetime.now(), onupdate=datetime.now())
     deleted_at = Column(DateTime)
 
     @classmethod

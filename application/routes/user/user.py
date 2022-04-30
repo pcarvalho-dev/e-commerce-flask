@@ -1,7 +1,7 @@
 from application.models.user import User
 from application.routes.user import user_bp
 from application.schemas.user import UserSchema
-from application.services.endpoints import default_return
+from application.services.request.requests import default_return
 from flask import request
 from flask_jwt_extended import jwt_required
 

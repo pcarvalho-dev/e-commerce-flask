@@ -1,6 +1,6 @@
 from application.models.user import User
 from application.routes.auth import auth_bp
-from application.services.endpoints import default_return
+from application.services.request.requests import default_return
 from flask import jsonify, request
 from flask_jwt_extended import (create_access_token, get_jwt_identity,
                                 jwt_required)
@@ -32,7 +32,7 @@ def login():
             return {"access_token": access_token}
 
 
-# Protect a route with jwt_required, which will kick out requests
+# Protect a route with jwt_required, which will kick out request
 # without a valid JWT present.
 @auth_bp.route("/protected", methods=["GET"])
 @jwt_required()

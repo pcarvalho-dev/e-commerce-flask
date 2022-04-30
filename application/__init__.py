@@ -1,6 +1,5 @@
 from flask import Flask
 
-from application.services.date_and_time import get_now
 from extensions import cors, jwt, db, ma, migrate
 
 
