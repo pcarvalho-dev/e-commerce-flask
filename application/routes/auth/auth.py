@@ -28,9 +28,12 @@ def login():
             return default_return(200, "User not found", {})
 
         if user.check_password(password):
-            access_token = create_access_token(identity=username)
+            user_jwt = {}
+            user_jwt['id'] = user.id
+            user_jwt['username'] = user.username
+            user_jwt['email'] = user.email
+            access_token = create_access_token(identity=user_jwt)
             return {"access_token": access_token}
-
 
 # Protect a route with jwt_required, which will kick out request
 # without a valid JWT present.
