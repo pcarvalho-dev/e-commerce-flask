@@ -3,10 +3,12 @@ from http import HTTPStatus
 
 import sqlalchemy
 import werkzeug
-from flask import Blueprint, jsonify
+from flask import jsonify
 from werkzeug.exceptions import MethodNotAllowed, NotFound
 
-exception_handler_bp = Blueprint('exception_handler_bp', __name__)
+from application.services.errors import bp
+from extensions import jwt
+
 logger = logging.getLogger(__name__)
 
 
@@ -18,14 +20,16 @@ class UnauthorizedError(Exception):
 
 
 class ForbiddenError(Exception):
-    def __init__(self, error='Recurso não encontrado', status_code=HTTPStatus.FORBIDDEN):
+    def __init__(self, error='Recurso não encontrado',
+                 status_code=HTTPStatus.FORBIDDEN):
         Exception.__init__(self)
         self.error = error
         self.status_code = status_code
 
 
 class NotFoundError(Exception):
-    def __init__(self, error='Recurso não encontrado', status_code=HTTPStatus.NOT_FOUND):
+    def __init__(self, error='Recurso não encontrado',
+                 status_code=HTTPStatus.NOT_FOUND):
         Exception.__init__(self)
         self.error = error
         self.status_code = status_code
@@ -38,7 +42,7 @@ class GenerateError(Exception):
         self.status_code = status_code
 
 
-@exception_handler_bp.app_errorhandler(NotFound)
+@bp.app_errorhandler(NotFound)
 def not_found_exception(e):
     logger.exception(e)
     response = jsonify({
@@ -49,7 +53,7 @@ def not_found_exception(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(UnauthorizedError)
+@bp.app_errorhandler(UnauthorizedError)
 def unauthorized_exception(e):
     logger.exception(e)
     response = jsonify({
@@ -60,7 +64,7 @@ def unauthorized_exception(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(ForbiddenError)
+@bp.app_errorhandler(ForbiddenError)
 def forbidden_exception(e):
     logger.exception(e)
     response = jsonify({
@@ -71,7 +75,7 @@ def forbidden_exception(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(GenerateError)
+@bp.app_errorhandler(GenerateError)
 def generate_exception(e):
     logger.exception(e)
     response = jsonify({
@@ -82,7 +86,7 @@ def generate_exception(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(NotFoundError)
+@bp.app_errorhandler(NotFoundError)
 def forbidden_exception(e):
     logger.exception(e)
     response = jsonify({
@@ -93,7 +97,7 @@ def forbidden_exception(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(MethodNotAllowed)
+@bp.app_errorhandler(MethodNotAllowed)
 def method_exception(e):
     logger.exception(e)
     response = jsonify(
@@ -105,7 +109,7 @@ def method_exception(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(sqlalchemy.exc.InternalError)
+@bp.app_errorhandler(sqlalchemy.exc.InternalError)
 def sql_error(e):
     logger.exception(e)
     response = jsonify(
@@ -117,7 +121,7 @@ def sql_error(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(werkzeug.exceptions.BadRequest)
+@bp.app_errorhandler(werkzeug.exceptions.BadRequest)
 def bad_request(e):
     logger.exception(e)
     response = jsonify(
@@ -129,7 +133,7 @@ def bad_request(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(KeyError)
+@bp.app_errorhandler(KeyError)
 def key_error(e):
     logger.exception(e)
     response = jsonify(
@@ -141,7 +145,7 @@ def key_error(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(NameError)
+@bp.app_errorhandler(NameError)
 def name_error(e):
     logger.exception(e)
     response = jsonify(
@@ -153,7 +157,7 @@ def name_error(e):
     return response
 
 
-@exception_handler_bp.app_errorhandler(Exception)
+@bp.app_errorhandler(Exception)
 def exception(e):
     logger.exception(e)
     response = jsonify(
@@ -163,3 +167,19 @@ def exception(e):
         })
     response.status_code = HTTPStatus.INTERNAL_SERVER_ERROR
     return response
+
+
+@jwt.invalid_token_loader
+def expired_token_callbacks(c):
+    return jsonify({
+        'status': 422,
+        'msg': f'Token não processado'
+    }), 422
+
+
+@jwt.unauthorized_loader
+def expired_token_callback(c):
+    return jsonify({
+        'status': 401,
+        'msg': f'Token não enviado'
+    }), 401
