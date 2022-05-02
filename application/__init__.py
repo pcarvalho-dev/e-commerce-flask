@@ -4,7 +4,7 @@ from extensions import cors, jwt, db, ma, migrate
 
 
 def create_app():
-    app = APIFlask(__name__)
+    app = APIFlask(__name__, title='Ecommerce API Doc', version='1.0')
     app.config.from_object("config.Config")
 
     # Extensions
