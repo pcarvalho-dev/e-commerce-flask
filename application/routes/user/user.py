@@ -7,6 +7,7 @@ from flask_jwt_extended import jwt_required
 
 
 @user_bp.route("", methods=["GET", "POST"])
+@user_bp.output(UserSchema())
 @jwt_required()
 def create_user():
     try:

@@ -1,8 +1,11 @@
-from apiflask import Schema
+from apiflask import Schema, fields
 
 
 class UserSchema(Schema):
+    id = fields.Integer(required=True)
+    name = fields.String()
+    status = fields.Integer()
+
     class Meta:
-        # Fields to expose
-        fields = ("id", "name", "email", "phone_number", "status")
+        strict = True
         ordered = True
