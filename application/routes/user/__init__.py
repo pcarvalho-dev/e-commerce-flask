@@ -1,6 +1,6 @@
 from apiflask import APIBlueprint
 
-user_bp = APIBlueprint("user_bp", __name__)
+user_bp = APIBlueprint("user", __name__)
 
 from . import user
 
