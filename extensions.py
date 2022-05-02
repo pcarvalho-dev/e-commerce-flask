@@ -1,7 +1,6 @@
 from datetime import datetime
 from functools import partial
 
-import boto3
 from flask import current_app
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager

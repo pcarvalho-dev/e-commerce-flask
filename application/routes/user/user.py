@@ -8,7 +8,7 @@ from flask_jwt_extended import jwt_required
 
 @user_bp.route("", methods=["GET", "POST"])
 @jwt_required()
-def item_views():
+def create_user():
     try:
         if request.method == 'GET':
             return "ok"

@@ -142,6 +142,7 @@ dmypy.json
 cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+/.idea/*
 /.idea/.gitignore
 /.idea/misc.xml
 /.idea/modules.xml

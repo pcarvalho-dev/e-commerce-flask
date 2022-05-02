@@ -19,3 +19,4 @@ python-slugify==5.0.2
 Werkzeug==2.0.1
 alembic==1.7.1
 debugpy
+apiflask==0.12.0

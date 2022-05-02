@@ -1,4 +1,4 @@
-from marshmallow import Schema
+from apiflask import Schema
 
 
 class UserSchema(Schema):
