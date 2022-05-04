@@ -1,5 +1,6 @@
 from application.models.user import User
 from application.routes.auth import auth_bp
+from application.schemas.auth import AuthInputSchema
 from application.services.request.requests import default_return
 from flask import jsonify, request
 from flask_jwt_extended import (create_access_token, get_jwt_identity,
@@ -7,8 +8,14 @@ from flask_jwt_extended import (create_access_token, get_jwt_identity,
 from sqlalchemy import or_
 
 
-@auth_bp.route("/token", methods=["POST"])
-def login():
+@auth_bp.post("/token")
+@auth_bp.doc(
+    summary='Get bearer token',
+    description='This method get authentication token',
+    tags=['Login']
+)
+@auth_bp.input(AuthInputSchema)
+def login(data):
     basic = request.headers.get("Authorization")
     username = request.json.get("username", None)
     password = request.json.get("password", None)

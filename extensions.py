@@ -1,6 +1,7 @@
 from datetime import datetime
 from functools import partial
 
+from apiflask import HTTPTokenAuth
 from flask import current_app
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -94,6 +95,7 @@ class RouteSQLAlchemy(SQLAlchemy):
         )
 
 
+auth = HTTPTokenAuth()
 cors = CORS()
 db = RouteSQLAlchemy(model_class=CRUDMixin)
 jwt = JWTManager()

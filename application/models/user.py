@@ -12,7 +12,7 @@ class User(db.Model, BaseModel):
     password = db.Column(db.String(256), nullable=False)
     document = db.Column(db.String(256))
     phone_number = db.Column(db.String(256))
-    status = db.Column(db.Boolean, default=1)
+    status = db.Column(db.Boolean(), default=1)
 
     # ForeignKeys
     # group_id = db.Column(db.Integer, db.ForeignKey("group.id"))
@@ -32,6 +32,7 @@ class User(db.Model, BaseModel):
         self.set_password(dict_body["password"])
         self.document = dict_body.get("document", self.document)
         self.phone_number = dict_body.get("phone_number", self.phone_number)
+        self.status = dict_body.get("status", 1)
         # self.group_id = dict_body.get("group_id", 1)
 
         return self
