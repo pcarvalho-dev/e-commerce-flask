@@ -1,11 +1,19 @@
-from marshmallow import Schema
+from apiflask import Schema, fields
 
 
-class ReducedSchema(Schema):
-    class Meta:
-        # Fields to expose
-        fields = ("hash_id", "name", "status")
-        ordered = True
+def default_schema(schema, many=False):
+    class DefaultReturnSchema(Schema):
+        status = fields.String()
+        msg = fields.String()
+        pagination = fields.Dict()
+        summary = fields.Dict()
+        data = fields.Nested(schema, many=many)
+
+        class Meta:
+            strict = True
+            ordered = True
+
+    return DefaultReturnSchema
 
 
 class ImageSchema(Schema):

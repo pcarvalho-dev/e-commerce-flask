@@ -1,9 +1,9 @@
-from flask import Blueprint
+from apiflask import APIBlueprint
 
-user_bp = Blueprint("user_bp", __name__)
+user_bp = APIBlueprint("user", __name__)
 
 from . import user
 
 
 def init_app(app):
-    app.register_blueprint(user_bp, url_prefix="/v1/user")
+    app.register_blueprint(user_bp, url_prefix="/v1/users")
