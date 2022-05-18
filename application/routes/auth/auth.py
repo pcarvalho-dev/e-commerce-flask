@@ -1,6 +1,6 @@
 from application.models.user import User
 from application.routes.auth import auth_bp
-from application.schemas.auth import AuthInputSchema
+from application.schemas.auth import AuthSchema
 from application.services.request.requests import default_return
 from flask import jsonify, request
 from flask_jwt_extended import (create_access_token, get_jwt_identity,

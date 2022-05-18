@@ -1,7 +1,5 @@
 from application.controllers.user import create_user, read_users
 from application.routes.user import user_bp
-from application.schemas.default import default_schema
-from application.schemas.user import UserInputSchema, UserOutputSchema
 from application.services.request.requests import default_return
 from flask_jwt_extended import jwt_required
 
