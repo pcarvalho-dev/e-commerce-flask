@@ -1,6 +1,6 @@
-from apiflask import APIBlueprint
+from flask import Blueprint
 
-auth_bp = APIBlueprint("login", __name__)
+auth_bp = Blueprint("login", __name__)
 
 from . import auth
 

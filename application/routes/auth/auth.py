@@ -9,13 +9,7 @@ from sqlalchemy import or_
 
 
 @auth_bp.post("/token")
-@auth_bp.doc(
-    summary='Get bearer token',
-    description='This method get authentication token',
-    tags=['Login']
-)
-@auth_bp.input(AuthInputSchema)
-def login(data):
+def login():
     basic = request.headers.get("Authorization")
     username = request.json.get("username", None)
     password = request.json.get("password", None)

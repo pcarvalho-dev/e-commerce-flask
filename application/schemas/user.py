@@ -1,4 +1,4 @@
-from apiflask import Schema, fields
+from marshmallow import Schema, fields
 
 
 class UserInputSchema(Schema):

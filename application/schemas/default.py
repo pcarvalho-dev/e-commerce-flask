@@ -1,4 +1,4 @@
-from apiflask import Schema, fields
+from marshmallow import Schema, fields
 
 
 def default_schema(schema, many=False):
